@@ -99,8 +99,8 @@ function App() {
           <ImageSlider content={sliderContent}/>
         </section>
         <section className='bg-white h-screen text-center min-w-[99vw] overflow-hidden' onKeyDown={()=> console.log('ssss')}>
-          <div className='max-w-lg mx-auto my-6 '>
-            <h2 className='text-4xl m-6 lg:mt-[10vh] mt-[vh]'>Quality Product</h2>
+          <div className='max-w-lg mx-auto my-12 '>
+            <h2 className='text-4xl m-6 mt-[10vh]'>Quality Product</h2>
             <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis, pariatur. Quasi adipisci distinctio repellat quibusdam, similique, voluptas enim cupiditate odit aspernatur at tempore impedit error harum alias, repudiandae iure quas.</span>
           </div>
 

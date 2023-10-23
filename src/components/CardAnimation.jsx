@@ -50,15 +50,15 @@ const CardAnimation = ({content = [], cardSliderIndex, setCardSliderIndex}) => {
                     className={`lg:min-w-[33%] md:min-w-[40%] min-w-[70%] transition-all duration-1000`}
                     style={{
                         transform: index === cardSliderIndex
-                            ? 'translateX(' + (margin - (100 * cardSliderIndex)) + '%)' // Centered slide
+                            ? `translate(${(margin - (100 * cardSliderIndex))}%, -20%)` // Centered slide
                             : index < cardSliderIndex
                                 ? `translateX(${(margin - (100 * cardSliderIndex))}%)` // Slides to the left
                                 : `translateX(${(margin - (100 * cardSliderIndex))}%)`, // Slides to the right
-                    }}>
+                    }}> 
                     <img
                         onClick={() => setCardSliderIndex(index)}
                         src={card.imageUrl}
-                        className={`h-max object-cover transition-all duration-1000 w-2/4 mx-auto ${index == cardSliderIndex ? ' -translate-y-4' :
+                        className={`h-max object-cover transition-all duration-1000 w-2/4 mx-auto ${index == cardSliderIndex ? '' :
                             index == cardSliderIndex - 1 ? '-rotate-[15deg]' :
                                 index == cardSliderIndex + 1 && 'rotate-[15deg]'
                             } translate-y-10 slide`} />
