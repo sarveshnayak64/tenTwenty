@@ -67,8 +67,6 @@ function App() {
   const [prevScrollPos, setPrevScrollPos] = useState(0);
   const [cardSliderIndex, setCardSliderIndex] = useState(1)
   const sectionRef = useRef();
-  const sectionHeader = useRef();
-  const sectionSubHeader = useRef();
 
   useEffect(() => {
     const options = {
