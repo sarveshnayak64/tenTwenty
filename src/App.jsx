@@ -66,7 +66,38 @@ function App() {
   const [isNavbarVisible, setIsNavbarVisible] = useState(true);
   const [prevScrollPos, setPrevScrollPos] = useState(0);
   const [cardSliderIndex, setCardSliderIndex] = useState(1)
-  
+  const sectionRef = useRef();
+  const sectionHeader = useRef();
+  const sectionSubHeader = useRef();
+
+  useEffect(() => {
+    const options = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.5, // 50% of the section must be visible
+    };
+
+    const callback = (entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          // The section is now in view
+          sectionRef.current.querySelector('h2').classList.add('opacity-100','scale-[1.2]');
+          sectionRef.current.querySelector('span').classList.add('opacity-100','scale-[1.2]');
+        } else {
+          // The section is out of view
+          sectionRef.current.querySelector('h2').classList.remove('opacity-100','scale-[1.2]');
+          sectionRef.current.querySelector('span').classList.remove('opacity-100','scale-[1.2]');
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(callback, options);
+    observer.observe(sectionRef.current);
+
+    // Clean up the observer when the component is unmounted
+    return () => observer.disconnect();
+  }, []);
+
   //Logic to hide or show navbar on scroll
   useEffect(() => {
     const handleScroll = () => {
@@ -96,24 +127,24 @@ function App() {
       <Navbar visible={isNavbarVisible} />
       <div className='snap-y snap-mandatory flex flex-col justify-center'>
         <section className='snap-start'>
-          <ImageSlider content={sliderContent}/>
+          <ImageSlider content={sliderContent} />
         </section>
-        <section className='bg-white h-screen text-center min-w-[99vw] overflow-hidden' onKeyDown={()=> console.log('ssss')}>
+        <section ref={sectionRef} className='bg-white h-screen text-center min-w-[99vw] overflow-hidden' onKeyDown={() => console.log('ssss')}>
           <div className='max-w-lg mx-auto my-12 '>
-            <h2 className='text-4xl m-6 mt-[10vh]'>Quality Product</h2>
-            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis, pariatur. Quasi adipisci distinctio repellat quibusdam, similique, voluptas enim cupiditate odit aspernatur at tempore impedit error harum alias, repudiandae iure quas.</span>
+            <h2 className='text-4xl m-6 mt-[10vh] transition-all duration-500 ease-in opacity-0'>Quality Product</h2>
+            <span className='transition-all duration-1000 ease-in opacity-0'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis, pariatur. Quasi adipisci distinctio repellat quibusdam, similique, voluptas enim cupiditate odit aspernatur at tempore impedit error harum alias, repudiandae iure quas.</span>
           </div>
 
 
           <CustomMouseCursor cursorSize={20}>
-            <CardAnimation content={cardSliderContent} cardSliderIndex={cardSliderIndex} setCardSliderIndex={setCardSliderIndex}/>
+            <CardAnimation content={cardSliderContent} cardSliderIndex={cardSliderIndex} setCardSliderIndex={setCardSliderIndex} />
           </CustomMouseCursor>
 
           <div className=''>
             <h2 className='text-xl font-bold'>{cardSliderContent[cardSliderIndex].title}</h2>
             <span>{cardSliderContent[cardSliderIndex].subTitle}</span>
           </div>
-
+          
         </section>
       </div>
     </>

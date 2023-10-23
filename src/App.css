@@ -2,3 +2,15 @@
   -webkit-animation-iteration-count: 10;
   animation-iteration-count: 10;
 }
+
+svg>rect {
+  stroke-dasharray: 460;
+  stroke-dashoffset: 460;
+  animation: rotate 3s linear infinite;
+}
+
+@keyframes rotate {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
