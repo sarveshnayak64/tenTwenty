@@ -58,6 +58,7 @@ const CardAnimation = ({content = [], cardSliderIndex, setCardSliderIndex}) => {
                     <img
                         onClick={() => setCardSliderIndex(index)}
                         src={card.imageUrl}
+                        loading="lazy"
                         className={`h-max object-cover transition-all duration-1000 w-2/4 mx-auto ${index == cardSliderIndex ? '' :
                             index == cardSliderIndex - 1 ? '-rotate-[15deg]' :
                                 index == cardSliderIndex + 1 && 'rotate-[15deg]'

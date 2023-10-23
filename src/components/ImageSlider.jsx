@@ -58,7 +58,7 @@ const ImageSlider = ({ content = [] }) => {
 
                 <div className='relative h-20 w-20 bg-blue-300 flex justify-center items-center'>
                     <span className='z-10'>Next</span>
-                    <img src={content[(activeIndex + 1) == content.length ? 0 : activeIndex + 1].imageUrl} className='absolute h-20 w-20' />
+                    <img loading="lazy" src={content[(activeIndex + 1) == content.length ? 0 : activeIndex + 1].imageUrl} className='absolute h-20 w-20' />
                 </div>
 
             </div>
@@ -75,7 +75,7 @@ const ImageSlider = ({ content = [] }) => {
                     className={`absolute inset-0 transition-all ease-in-out ${index == getPrevIndex() ? 'scale-[1] z-10' :
                         index != activeIndex ? 'inset-y-full scale-[0.7]' :
                             index == activeIndex && ' duration-1000 inset-y-0 scale-[1] z-20'}`}>
-                    <img src={slide.imageUrl} alt={`Slide`} className='h-full w-full object-cover' />
+                    <img loading="lazy" src={slide.imageUrl} alt={`Slide`} className='h-full w-full object-cover' />
                 </div>
             ))}
         </div>
